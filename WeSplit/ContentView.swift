@@ -29,6 +29,10 @@ struct ContentView: View {
     return amountPerPerson
   }
   
+  var isZero: Bool {
+    return tipPercentage == 0
+  }
+  
   var body: some View {
     NavigationStack {
       Form {
@@ -60,6 +64,7 @@ struct ContentView: View {
         Section("Total amount") {
           Text(grandTotal, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
         }
+        .foregroundColor(isZero ? .red : .black)
       }
       .navigationTitle("WeSplit")
       .toolbar {
